@@ -1,0 +1,81 @@
+{
+  "name": "companies",
+  "fields": [
+    {
+      "name": "restaurant_id",
+      "type": "string"
+    },
+    {
+      "name": "menu_id",
+      "type": "string"
+    },
+    {
+      "name": "dish_id",
+      "type": "string"
+    },
+    {
+      "name": "dish_name",
+      "type": "string"
+    },
+    {
+      "name": "category_id",
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "type": "string"
+    },
+    {
+      "name": "speciality_tags",
+      "type": "string"
+    },
+    {
+      "name": "search_tags",
+      "type": "string"
+    },
+    {
+      "name": "type",
+      "type": "string"
+    },
+    {
+      "name": "food_variants",
+      "type": "string"
+    },
+    {
+      "name": "published",
+      "type": "bool"
+    },
+    {
+      "name": "options",
+      "type": "string"
+    },
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "image",
+      "type": "string"
+    },
+    {
+      "name": "addons",
+      "type": "string"
+    },
+    {
+      "name": "packingCharge",
+      "type": "float"
+    },
+    {
+      "name": "pictorial_description",
+      "type": "string"
+    },
+    {
+      "name": "quantity",
+      "type": "bool"
+    },
+    {
+      "name": "recommendation",
+      "type": "string"
+    }
+  ]
+}
