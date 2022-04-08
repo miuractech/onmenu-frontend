@@ -149,9 +149,9 @@ export default function DishPopUp({open,setOpen,filter,dish}) {
                     </IconButton>
                 </div>
                 <div className='dish-display-paper'  >
-                    <div style={{margin:'auto'}} >
+                    {dish.images?.length>0 && <div style={{margin:'auto'}} >
                         <img src={dish.images[0]} alt="dish" style={{width:'100%',maxWidth:444,height:300}} />
-                    </div>
+                    </div>}
                     <div>
                         <div className="font700" style={{fontSize:22,padding:'12px 16px 4px 24px'}} >
                             {dish.dish_name}

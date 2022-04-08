@@ -69,7 +69,7 @@ export default function Topbar() {
   var sidebarInfo = [
     // {action:()=>history.push(`/restaurant/${restaurantId}/restaurantInfo`),name:'Location',link:'',icon:LocationIcon},
     // {action:()=>console.log('action'),name:'Timing',link:'',icon:ClockIcon},
-    {action:()=>history.push(`/restaurant/${restaurantId}`),name:'Menus',link:'',icon:RestautantMenuIcon},
+    {action:()=>history.push(`/restaurant/${restaurantId}`),name:'Home',link:'',icon:RestautantMenuIcon},
     {action:()=>history.push(`/restaurant/${restaurantId}/orders`),name:'Takeaway Orders',link:'',icon:OrderIcon},
     {action:()=>history.push(`/restaurant/${restaurantId}/payment`),name:'Payment',link:'',icon:PaymentIcon },
     {action:()=>history.push(`/restaurant/${restaurantId}/terms`),name:'Terms & Condition',link:'',icon:SheildIcon },

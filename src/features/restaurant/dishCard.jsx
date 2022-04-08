@@ -143,19 +143,28 @@ export const calcDishTotal = (selectedVariant,selectSubVariant,selectedAddons,qu
     return total 
 }
 
-function DishCard({dish,filter}) {
+function DishCard({dish,filter,menuPublish,categoryPublish}) {
     const [open, setOpen] = useState(false)
     const dispatch = useDispatch()
+    const restaurant = useSelector(state=>state.restaurant)
+    console.log(restaurant);
     const [confirmRemove, setConfirmRemove] = useState(false)
+    
+    const publishStatus = (dish.published === true) && menuPublish && categoryPublish
     return (
         <div style={{margin:'14px 0px'}} >
+            
             <Card 
             style={{padding:8,minHeight:121,borderRadius:12}} 
             elevation={0} 
-            onClick={()=>setOpen(true)}
+            onClick={()=>{
+                if(publishStatus){
+                    setOpen(true)
+                }
+            }}
             >
             <RibbonContainer >
-                    {dish.specialty_tags && 
+                    {dish.specialty_tags && publishStatus && 
                     <LeftCornerLargeRibbon backgroundColor={'#E7D27C'} >
                         <div style={{fontSize:10,position:'relative'}}  >
                             {dish.specialty_tags}
@@ -163,10 +172,15 @@ function DishCard({dish,filter}) {
                         </LeftCornerLargeRibbon>
                     } 
                 <div className="flex" style={{flexGrow:1,width:'100%'}}>
-                    <div >
-                        <img src={dish.images[0]} alt={dish.dish_name} className='dish-img-small border10' />
+                    <div 
+                    >
+                    
+                    {dish.images?.length>0 ?
+                        <img src={dish.images[0]} style={{filter:publishStatus?'unset':'grayscale(100%)'}} alt={dish.dish_name} className='dish-img-small border10' />:
+                        <img src={'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='} alt={dish.dish_name} className='dish-img-small border10' />
+                    }
                     </div>
-                    <div style={{marginLeft:16,flexGrow:1}}  >
+                    <div style={{marginLeft:16,flexGrow:1,color:publishStatus?'inherit':'grey'}}  >
                          <div className='font500 dish-title text-left'   >
                              {dish.dish_name}
                          </div>
@@ -174,6 +188,16 @@ function DishCard({dish,filter}) {
                              {dish.description}
                          </div>
                          {/*------------------------------------- variant prices -------------------------------- */}
+                         {!publishStatus ? 
+                         <div style={{display:'grid',gridTemplateColumns:'2fr 1fr',gridGap:2,flexGrow:1}} >
+                             <div />
+                            <div style={{fontSize:10,color:'#888'}} >
+                                <br/>
+                                <br/>
+                                unavailable
+                            </div>
+                         </div>
+                         :                         
                          <div style={{display:'grid',gridTemplateColumns:'2fr 1fr',gridGap:2,flexGrow:1}} >
                              <div  style={{display:'grid',gridTemplateColumns:'1fr 1fr ',gridGap:2,fontSize:12}}   >
                                  {dish.food_variants && dish.food_variants.length>0  && dish.food_variants.map(({food_preference,price},index)=>(
@@ -213,14 +237,14 @@ function DishCard({dish,filter}) {
                                         >
                                             Add
                                         </Button>
-                                        {!dish.quantity &&<div style={{fontSize:10,color:'#888'}} >
+                                        {(dish.quantity || dish.options.length>0 || dish.addons.length>0 ) &&<div style={{fontSize:10,color:'#888'}} >
                                             customize
                                         </div>}
                                     </div>
                                   
                                  
                             
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </RibbonContainer>
@@ -292,7 +316,7 @@ export const getVariantImage = (variant,style) => {
 
 
 export const getPrice = (price) => {
-    return price = (price === '0')?null:`${price}/-`
+    return price = (price === '0')?null:`${price}`
 }
 
 

@@ -70,10 +70,28 @@ export default function Feedback() {
                 </div>
                 <br />
                 <div style={{textAlign:'left',color:'#808084'}} >
-                Please rate the restaurant 
+                Please rate your experience
                 </div>
             </div>
-            {cart.map(({dish})=>(
+           
+                <div  >
+                    <div className='flex' style={{justifyContent:'center',alignItems:'center'}} >
+                        {[Feedback1,Feedback2,Feedback3,Feedback4].map((image,index)=>(
+                            <div style={{margin:8,cursor:'pointer'}} onClick={()=>{
+                                if(!auth.feedBack){
+                                    setSelected(index)
+                                }
+                            }} >
+                                <img src={image} style={{width:selected === index?100:75}} alt="" />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <br />
+                <div style={{textAlign:'left',color:'#808084',marginTop:25,marginLeft:20}} >
+                    Items in cart
+                </div>
+                {cart.map(({dish})=>(
                 <div className="margin2" style={{display:'grid',gridTemplateColumns:'2fr 1fr',gridGap:4}} >
                     <div className="text-left" >
                         {dish.dish_name}
@@ -89,20 +107,7 @@ export default function Feedback() {
                     </div>
                 </div>
             ))}
-                <div style={{marginTop:50}} >
-                    <div className='flex' style={{justifyContent:'center',alignItems:'center'}} >
-                        {[Feedback1,Feedback2,Feedback3,Feedback4].map((image,index)=>(
-                            <div style={{margin:8,cursor:'pointer'}} onClick={()=>{
-                                if(!auth.feedBack){
-                                    setSelected(index)
-                                }
-                            }} >
-                                <img src={image} style={{width:selected === index?100:75}} alt="" />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <br />
+            <br />
                 <div>
                     <TextField 
                     type="text" 

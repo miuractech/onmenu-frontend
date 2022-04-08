@@ -12,10 +12,16 @@ export function setRestaurantFirebase(restaurantId,history) {
     .then(doc => {
       if(doc.exists){
         const data = doc.data()
-        console.log('restaurantraw',data);
+        // console.log('restaurantraw',data);
         response['restaurant'] = data
       
-      firestore.collection('restaurants').doc(restaurantId).collection('menus').where('published','==',true).get()
+      firestore
+      .collection('restaurants')
+      .doc(restaurantId)
+      .collection('menus')
+      .where('published','in',[true,false])
+      .orderBy('index','asc')
+      .get()
         .then(snap=>{
             snap.forEach(doc=>{
                 var data = doc.data()
@@ -30,7 +36,13 @@ export function setRestaurantFirebase(restaurantId,history) {
                 response['type'] = Object.keys(menudata)[0]
                 response['menus'] = menudata
               }
-              firestore.collection('restaurants').doc(restaurantId).collection('categories').where('published','==',true).get()
+              firestore
+              .collection('restaurants')
+              .doc(restaurantId)
+              .collection('categories')
+              // .where('published','==',true)
+              .where('published','in',[true,false])
+              .orderBy('index','asc').get()
               .then(snap=>{
 
                 snap.forEach(doc=>{
@@ -71,7 +83,14 @@ export function setDishwithFirebase(infos) {
     const {restaurantId,type,restaurant,history} = infos
     var dishes =[]
     var response = {}
-    firestore.collection('dishes').doc(restaurantId).collection(type).where('published','==',true).get()
+    firestore
+    .collection('dishes')
+    .doc(restaurantId)
+    .collection(type)
+    // .where('published','==',true)
+    .where('published','in',[true,false])
+    .orderBy('index','asc')
+    .get()
     .then(snap=>{
       if (snap.empty){
           history.push(`/restaurant/${restaurantId}/`)

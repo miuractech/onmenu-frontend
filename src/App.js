@@ -31,6 +31,9 @@ export const removeUserAll = () => {
   firebase.auth().signOut()
   sessionStorage.removeItem('userName')
   sessionStorage.removeItem('lastCurrent')
+  localStorage.removeItem("cart-items");
+  localStorage.removeItem("filter");
+  sessionStorage.removeItem("filter");
 }  
 function App() {
   // const [initialLoad, setInitialLoad] = useState(true)

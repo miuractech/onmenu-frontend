@@ -81,6 +81,9 @@ const variants = {
     'vegan':[
         {name:'vegan',image:VEGANICON},
     ],
+    'egg':[
+        {name:'egg',image:EGGICON},
+    ],
     'non-veg':[
         {name:'chicken',image:SHRIMPICON},
         {name:'lamb',image:LAMBICON},
@@ -96,14 +99,11 @@ const variants = {
         {name:'rabbit',image:RABBITICON},
         {name:'crab',image:CRABICON},
     ],
-    'egg':[
-        {name:'egg',image:EGGICON},
-    ],
 }
 
 export const filterImages = {
     veg:VEGICON,
-    vegan:VEGICON,
+    vegan:VEGANICON,
     chicken:CHICKENICON,
     lamb:LAMBICON,
     egg:EGGICON,

@@ -67,7 +67,7 @@ export function Restaurant() {
             }
         }
     }, [selectedMenu])
-    console.log('selectedMenu',menus && type && menus[type]);
+    // console.log('selectedMenu',menus && type && menus[type]);
     return (
         <div 
         >
@@ -118,7 +118,7 @@ export function Restaurant() {
                     smooth={true}
                     duration={1500}
                     offset={-120}
-                    key={menu.name}
+                    key={menu.menuId}
                     >
                         <div 
                         key={menu.menuId} 
@@ -207,7 +207,7 @@ export function Restaurant() {
                 style={{overflowX:'scroll',marginTop:10,}}
                 >
                     {filter.map(variant=>(
-                        <div onClick={()=>dispatch(setFilter(variant))} >
+                        <div key={variant} onClick={()=>dispatch(setFilter(variant))} >
                             <img src={filterImages[variant]} style={{margin:'4px 8px',height:30,zIndex:10}} alt="" />
                         </div>
                     ))}
@@ -299,7 +299,7 @@ export function Restaurant() {
             {selectedCategory && currentCategories?.map((category) => (
                 <>
                 <ScrollLink
-                    to={selectedMenu.menuId+category.name}
+                    to={selectedMenu.menuId+category.categoryId}
                     spy={true}
                     smooth={true}
                     duration={1500}
